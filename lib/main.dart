@@ -121,8 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 20),
               buildCategorySection(
-                  'School subjects', ['John Doe', 'Papi Chulo', 'Lars Hendriks']),
-              buildCategorySection('Sports', ['Mathew Jones', 'Marcel Bemmel', 'Laura Bezem']),
+                  'School subjects', ['John Doe', 'Papi Chulo', 'Lars Hendriks', 'Rik Bilsen', 'Jaycey Brugge', 'Tijn Timmermans']),
+              buildCategorySection('Sports', ['Mathew Jones', 'Marcel Bemmel', 'Laura Bezem', 'Peter franse', 'Pieter van Post', 'Martijn Krabbel' ]),
             ],
           ),
         ),
@@ -208,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: List.generate(3, (index) {
+                        children: List.generate(6, (index) {
                           return IconButton(
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(),
