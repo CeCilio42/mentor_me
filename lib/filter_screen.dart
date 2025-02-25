@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'result_screen.dart'; // Import the ResultsScreen
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -79,7 +80,13 @@ class _FilterScreenState extends State<FilterScreen> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    // Handle apply action
+                    // Navigate to the ResultsScreen when Apply is pressed
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ResultsScreen(),
+                      ),
+                    );
                   },
                   child: const Text('Apply'),
                 ),
