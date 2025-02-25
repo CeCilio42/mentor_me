@@ -104,8 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 20),
               buildCategorySection(
-                  'School subjects', ['John Doe', 'John Doe', 'John Doe']),
-              buildCategorySection('Sports', ['John Doe', 'John Doe', 'John Doe']),
+                  'School subjects', ['John Doe', 'Papi Chulo', 'Lars Hendriks']),
+              buildCategorySection('Sports', ['Mathew Jones', 'Marcel Bemmel', 'Laura Bezem']),
             ],
           ),
         ),
