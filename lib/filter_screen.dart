@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'result_screen.dart'; // Import the ResultsScreen
+import 'result_screen.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({super.key});
@@ -9,7 +9,9 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  double _distanceValue = 50.0; // Initial distance value
+  double _distanceValue = 50.0;
+  final TextEditingController _nameController = TextEditingController();
+  String? _selectedSubject;
 
   @override
   Widget build(BuildContext context) {
@@ -21,21 +23,20 @@ class _FilterScreenState extends State<FilterScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            // Name Field
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
                 labelText: 'Name',
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
-
-            // Subject Field (Dropdown)
             DropdownButtonFormField<String>(
               decoration: const InputDecoration(
                 labelText: 'Subject',
                 border: OutlineInputBorder(),
               ),
+              value: _selectedSubject,
               items: <String>['Math', 'Science', 'History', 'English']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
@@ -44,13 +45,12 @@ class _FilterScreenState extends State<FilterScreen> {
                 );
               }).toList(),
               onChanged: (String? newValue) {
-                // Handle dropdown change here
+                setState(() {
+                  _selectedSubject = newValue;
+                });
               },
             ),
-
             const SizedBox(height: 20),
-
-            // Distance Slider
             Row(
               children: <Widget>[
                 const Text('Distance:'),
@@ -71,16 +71,12 @@ class _FilterScreenState extends State<FilterScreen> {
                 Text('${_distanceValue.round()} km'),
               ],
             ),
-
             const Spacer(),
-
-            // Apply and Reset Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to the ResultsScreen when Apply is pressed
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -92,7 +88,11 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
                 OutlinedButton(
                   onPressed: () {
-                    // Handle reset action
+                    setState(() {
+                      _nameController.clear();
+                      _selectedSubject = null;
+                      _distanceValue = 50.0;
+                    });
                   },
                   child: const Text('Reset'),
                 ),
@@ -102,5 +102,11 @@ class _FilterScreenState extends State<FilterScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
   }
 }
