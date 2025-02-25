@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'chat_screen.dart'; // Import chat screen
+import 'chat_screen.dart';
 
-class ResultsScreen extends StatefulWidget { // Changed to StatefulWidget
+class ResultsScreen extends StatefulWidget {
   const ResultsScreen({super.key});
 
   @override
@@ -10,7 +10,8 @@ class ResultsScreen extends StatefulWidget { // Changed to StatefulWidget
 }
 
 class _ResultsScreenState extends State<ResultsScreen> {
-  bool _isExpanded = false; // Add _isExpanded state
+  bool _isExpanded = false;
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
               const Padding(
                 padding: EdgeInsets.only(top: 32.0),
                 child: Text(
-                  '10 Results',
+                  '9 Results',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w900,
@@ -34,18 +35,32 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  hintStyle: const TextStyle(color: Colors.white),
-                  prefixIcon: const Icon(Icons.search, color: Colors.white),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                    borderSide: BorderSide.none,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        hintStyle: const TextStyle(color: Colors.white),
+                        prefixIcon: const Icon(Icons.search, color: Colors.white),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50.0),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: const Color(0xFF9380B3),
+                      ),
+                    ),
                   ),
-                  filled: true,
-                  fillColor: const Color(0xFF9380B3),
-                ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context); // Go back to main.dart
+                    },
+                    icon: const Icon(Icons.close, color: Colors.white),
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               const Text('Recommended',
@@ -72,7 +87,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: GestureDetector( // Added bottom navigation bar
+      bottomNavigationBar: GestureDetector(
         onTap: () {
           setState(() {
             _isExpanded = !_isExpanded;
@@ -120,7 +135,6 @@ class _ResultsScreenState extends State<ResultsScreen> {
     );
   }
 
-  // ... (rest of the buildMentorCard, buildCategorySection, buildCategoryItem code remains the same)
   Widget buildMentorCard() {
     int rating = 1;
 
