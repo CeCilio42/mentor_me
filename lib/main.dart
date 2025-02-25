@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 150,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 3,
+                  itemCount: 6,
                   itemBuilder: (context, index) {
                     return buildMentorCard();
                   },
