@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 6,
                   itemBuilder: (context, index) {
-                    return buildMentorCard();
+                    return buildMentorCard(index);
                   },
                 ),
               ),
@@ -179,8 +179,16 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget buildMentorCard() {
+    Widget buildMentorCard(int index) { // Add index parameter
     int rating = 1;
+    List<String> profilePictures = [
+      'assets/profile1.jpg',
+      'assets/profile2.jpeg',
+      'assets/profile3.jpg',
+      'assets/profile4.jpg',
+      'assets/profile5.jpg',
+      'assets/profile6.jpeg',
+    ];
 
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
@@ -203,17 +211,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CircleAvatar(
-                        radius: 30,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset(
+                          profilePictures[index % profilePictures.length], // Use index to select a picture
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: List.generate(6, (index) {
+                        children: List.generate(6, (idx) {
                           return IconButton(
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(),
                             onPressed: () {
-                              setState(() => rating = index + 1);
+                              setState(() => rating = idx + 1);
                             },
                             icon: Stack(
                               children: [
@@ -255,7 +269,7 @@ class _MyHomePageState extends State<MyHomePage> {
             scrollDirection: Axis.horizontal,
             itemCount: items.length,
             itemBuilder: (context, index) {
-              return buildCategoryItem(items[index]);
+              return buildCategoryItem(items[index], index);
             },
           ),
         ),
@@ -264,7 +278,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget buildCategoryItem(String item) {
+    Widget buildCategoryItem(String item, int index) { //add index parameter
+    List<String> profilePictures = [
+
+      'assets/profile4.jpg',
+      'assets/profile5.jpg',
+      'assets/profile1.jpg',
+      'assets/profile2.jpeg',
+      'assets/profile6.jpeg',
+      'assets/profile3.jpg',
+
+    ];
+
     return SizedBox(
       width: 150,
       child: Card(
@@ -279,9 +304,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Text('Expertise'),
               const SizedBox(height: 8),
-              const Center(
-                child: CircleAvatar(
-                  radius: 30,
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.asset(
+                    profilePictures[index % profilePictures.length], //use index to select a picture
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
