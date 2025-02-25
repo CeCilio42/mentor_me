@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'chat_screen.dart';
+import 'filter_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   bool _isExpanded = false;
+  bool _isFilter = false;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -73,17 +75,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 10),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  hintStyle: const TextStyle(color: Colors.white),
-                  prefixIcon: const Icon(Icons.search, color: Colors.white),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-                    borderSide: BorderSide.none,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isExpanded = true;
+                  });
+                  print("TextField Tapped! _isExpanded is now: $_isExpanded");
+                },
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    hintStyle: const TextStyle(color: Colors.white),
+                    prefixIcon: GestureDetector( 
+                      onTap: () {
+                        setState(() {
+                          _isExpanded = true;
+                          _isFilter = true;
+                        });
+                      },
+                      child: const Icon(Icons.search, color: Colors.white),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: const Color(0xFF9380B3),
                   ),
-                  filled: true,
-                  fillColor: const Color(0xFF9380B3),
                 ),
               ),
               const SizedBox(height: 20),
@@ -114,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: () {
           setState(() {
             _isExpanded = !_isExpanded;
+            _isFilter = false;
           });
         },
         child: AnimatedContainer(
@@ -127,7 +146,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: BottomAppBar(
               color: Colors.white,
               child: _isExpanded
-                  ? const ChatScreen()
+                ? _isFilter
+                  ? const FilterScreen()
+                  : const ChatScreen()
                   : Padding(
                       padding: const EdgeInsets.only(top: 16.0),
                       child: Center(
@@ -135,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           onPressed: () {
                             setState(() {
                               _isExpanded = true;
+                              _isFilter = false;
                             });
                           },
                           style: ElevatedButton.styleFrom(
