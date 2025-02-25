@@ -80,7 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   setState(() {
                     _isExpanded = true;
                   });
-                  print("TextField Tapped! _isExpanded is now: $_isExpanded");
                 },
                 child: TextField(
                   decoration: InputDecoration(
