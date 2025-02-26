@@ -27,7 +27,7 @@ The app offers an intuitive and user-friendly interface, making it easy for both
 ## Features
 - Mentoring
 - Chatting
-- Badges for completing tasks
+- Badges for planning a meeting
 
 ## Installation
 1. Clone the repository:
