@@ -179,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-    Widget buildMentorCard(int index) { // Add index parameter
+    Widget buildMentorCard(int index) { 
     int rating = 1;
     List<String> profilePictures = [
       'assets/profile1.jpg',
@@ -214,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset(
-                          profilePictures[index % profilePictures.length], // Use index to select a picture
+                          profilePictures[index % profilePictures.length],
                           width: 60,
                           height: 60,
                           fit: BoxFit.cover,
@@ -278,7 +278,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-    Widget buildCategoryItem(String item, int index) { //add index parameter
+    Widget buildCategoryItem(String item, int index) { 
     List<String> profilePictures = [
 
       'assets/profile4.jpg',
@@ -308,7 +308,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.asset(
-                    profilePictures[index % profilePictures.length], //use index to select a picture
+                    profilePictures[index % profilePictures.length], 
                     width: 60,
                     height: 60,
                     fit: BoxFit.cover,

@@ -15,13 +15,13 @@ class ChatScreen extends StatelessWidget {
             name: 'Lars Hendriks',
             message: 'Ik vond het heel gezellig',
             time: '3 min',
-            hasNotification: true, // Add notification for the first chat
+            hasNotification: true, 
           ),
           ChatItem(
             name: 'Monique Zuid',
             message: 'Wanneer spreken we nog...',
             time: '3h',
-            hasNotification: true, // Add notification for the second chat
+            hasNotification: true, 
           ),
           ChatItem(
             name: 'Forrel Williams',
@@ -55,13 +55,13 @@ class ChatItem extends StatelessWidget {
     required this.name,
     required this.message,
     required this.time,
-    this.hasNotification = false, // Add notification property
+    this.hasNotification = false, 
   });
 
   final String name;
   final String message;
   final String time;
-  final bool hasNotification; // Notification property
+  final bool hasNotification; 
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class ChatItem extends StatelessWidget {
             ),
           ),
           Text(time),
-          if (hasNotification) // Show notification if hasNotification is true
+          if (hasNotification) 
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Container(

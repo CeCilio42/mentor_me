@@ -56,7 +56,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   const SizedBox(width: 8),
                   IconButton(
                     onPressed: () {
-                      Navigator.pop(context); // Go back to main.dart
+                      Navigator.pop(context); 
                     },
                     icon: const Icon(Icons.close, color: Colors.white),
                   ),
