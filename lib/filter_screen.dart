@@ -37,7 +37,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 border: OutlineInputBorder(),
               ),
               value: _selectedSubject,
-              items: <String>['Math', 'Science', 'History', 'English']
+              items: <String>['Math', 'Science', 'History', 'English', 'Soccer']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
