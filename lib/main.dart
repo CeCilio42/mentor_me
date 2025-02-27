@@ -121,8 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 20),
               buildCategorySection(
-                  'School subjects', ['Professor Alex', 'Master Tobias', 'Lars Hendriks', 'Coach Samuel', 'Ms. Margaret', 'Liam Bennett']),
-              buildCategorySection('Sports', ['Sophia Mitchell', 'Nina Torres', 'Laura Bezemt', 'Peter Van Zuid', 'Pieter van Post', 'Martijn Krabbel' ]),
+                  'School subjects', ['John Doe', 'Papi Chulo', 'Lars Hendriks', 'Rik Bilsen', 'Jaycey Brugge', 'Tijn Timmermans']),
+              buildCategorySection('Sports', ['Mathew Jones', 'Marcel Bemmel', 'Laura Bezem', 'Peter franse', 'Pieter van Post', 'Martijn Krabbel' ]),
             ],
           ),
         ),
@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          height: _isExpanded ? MediaQuery.of(context).size.height * 0.75 : 80.0,
+          height: _isExpanded ? MediaQuery.of(context).size.height * 0.75 : 50.0,
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20.0),
@@ -149,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ? const FilterScreen()
                   : const ChatScreen()
                   : Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: Center(
                         child: ElevatedButton(
                           onPressed: () {
@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             backgroundColor: Colors.grey[300],
                             foregroundColor: Colors.black,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
+                                horizontal: 24, vertical: 10),
                             textStyle: const TextStyle(fontSize: 16),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
@@ -179,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-    Widget buildMentorCard(int index) { 
+    Widget buildMentorCard(int index) {
     int rating = 1;
     List<String> profilePictures = [
       'assets/profile1.jpg',
@@ -190,74 +190,68 @@ class _MyHomePageState extends State<MyHomePage> {
       'assets/profile6.jpeg',
     ];
 
-    List<String> mentorNames = [
-      'Dr. James Wilson',
-      'Sarah Thompson',
-      'Michael Chen',
-      'Emma Rodriguez',
-      'David Parker',
-      'Lisa Anderson'
-    ];
-
-    List<String> expertises = ['Math', 'Chess', 'History', 'English'];
-    String randomExpertise = expertises[index % expertises.length];
-
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
-        return SizedBox(
-          width: 150,
-          height: 150,
-          child: Card(
-            elevation: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    mentorNames[index % mentorNames.length],
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(randomExpertise),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.asset(
-                          profilePictures[index % profilePictures.length],
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
+        return GestureDetector( // Wrap the card with GestureDetector
+          onTap: () {
+            _showProfilePopup(context, index); // Show the popup
+          },
+          child: SizedBox(
+            width: 150,
+            height: 150,
+            child: Card(
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Mentor Name',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const Text('Expertise'),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.asset(
+                            profilePictures[index % profilePictures.length],
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: List.generate(6, (idx) {
-                          return IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            onPressed: () {
-                              setState(() => rating = idx + 1);
-                            },
-                            icon: Stack(
-                              children: [
-                                const Icon(
-                                  Icons.star,
-                                  color: Color(0xFF6E36CD),
-                                ),
-                                Icon(
-                                  Icons.star_border,
-                                  color: Colors.black,
-                                ),
-                              ],
-                            ),
-                          );
-                        }).sublist(0, rating),
-                      ),
-                    ],
-                  ),
-                ],
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(6, (idx) {
+                            return IconButton(
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              onPressed: () {
+                                setState(() => rating = idx + 1);
+                              },
+                              icon: Stack(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    color: Color(0xFF6E36CD),
+                                  ),
+                                  Icon(
+                                    Icons.star_border,
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).sublist(0, rating),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -289,7 +283,112 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-    Widget buildCategoryItem(String item, int index) { 
+
+    void _showProfilePopup(BuildContext context, int index) {
+      List<String> profilePictures = [
+        'assets/profile1.jpg',
+        'assets/profile2.jpeg',
+        'assets/profile3.jpg',
+        'assets/profile4.jpg',
+        'assets/profile5.jpg',
+        'assets/profile6.jpeg',
+      ];
+      List<String> mentorNames = [
+        'John Doe',
+        'Papi Chulo',
+        'Lars Hendriks',
+        'Rik Bilsen',
+        'Jaycey Brugge',
+        'Tijn Timmermans',
+      ];
+      List<String> mentorBios = [
+        'Experienced math tutor',
+        'Sports and fitness mentor',
+        'Software development expert',
+        'History and social studies mentor',
+        'Art and design mentor',
+        'Language and communication mentor',
+      ];
+      List<String> mentorDistance = [
+        '2 km away',
+        '5 km away',
+        '1 km away',
+        '10 km away',
+        '3 km away',
+        '7 km away',
+      ];
+      List<int> meetingCount = [
+        1,
+        3,
+        2,
+        4,
+        2,
+        3,
+      ];
+      List<String> phonenumber = [
+        '+31 612345678',
+        '+31 628736541',
+        '+31 681726354',
+        '+31 663754781',
+        '+31 546372734',
+        '+31 645632829',
+      ];
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(
+                    profilePictures[index % profilePictures.length],
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(mentorNames[index], style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                Text(mentorBios[index], textAlign: TextAlign.left),
+                const SizedBox(height: 10),
+                Text('Distance: ${mentorDistance[index]}'),
+                const SizedBox(height: 10),
+                Text('Phone: ${phonenumber[index]}'),
+                const SizedBox(height: 10),
+                Row(
+                  children: List.generate(meetingCount[index], (starIndex) => const Icon(Icons.star, color: Colors.purple)),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  setState(() {
+                    _isExpanded = true;
+                  });
+                },
+                child: const Text('Add'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+
+    Widget buildCategoryItem(String item, int index) { //add index parameter
     List<String> profilePictures = [
 
       'assets/profile4.jpg',
@@ -300,9 +399,6 @@ class _MyHomePageState extends State<MyHomePage> {
       'assets/profile3.jpg',
 
     ];
-
-    List<String> expertises = ['Math', 'Chess', 'History', 'English'];
-    String randomExpertise = expertises[index % expertises.length];
 
     return SizedBox(
       width: 150,
@@ -316,12 +412,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 item,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text(randomExpertise),
+              const Text('Expertise'),
+              const SizedBox(height: 8),
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.asset(
-                    profilePictures[index % profilePictures.length], 
+                    profilePictures[index % profilePictures.length], //use index to select a picture
                     width: 60,
                     height: 60,
                     fit: BoxFit.cover,
