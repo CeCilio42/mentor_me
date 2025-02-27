@@ -23,15 +23,28 @@ class _ResultsScreenState extends State<ResultsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.only(top: 32.0),
-                child: Text(
-                  '9 Results',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(top: 32.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '9 Mentors',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Found',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 10),
@@ -80,7 +93,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
               ),
               const SizedBox(height: 20),
               buildCategorySection(
-                  'School subjects', ['John Doe', 'Papi Chulo', 'Lars Hendriks']),
+                  'School subjects', ['Dr. Marcel', 'Forrel', 'Luke South']),
               buildCategorySection(
                   'Sports', ['Mathew Jones', 'Marcel Bemmel', 'Laura Bezem']),
             ],
@@ -137,6 +150,18 @@ class _ResultsScreenState extends State<ResultsScreen> {
 
   Widget buildMentorCard() {
     int rating = 1;
+    List<String> mentorNames = [
+      'Dr. James Wilson',
+      'Sarah Thompson',
+      'Michael Chen'
+    ];
+    
+    List<String> expertises = ['Mathematics', 'Physics', 'Computer Science'];
+    List<String> profilePictures = [
+      'assets/profile1.jpg',
+      'assets/profile2.jpeg',
+      'assets/profile3.jpg',
+    ];
 
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
@@ -150,17 +175,23 @@ class _ResultsScreenState extends State<ResultsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Mentor Name',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    mentorNames[rating - 1],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  const Text('Expertise'),
+                  Text(expertises[rating - 1]),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CircleAvatar(
-                        radius: 30,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset(
+                          profilePictures[rating - 1],
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -221,6 +252,24 @@ class _ResultsScreenState extends State<ResultsScreen> {
   }
 
   Widget buildCategoryItem(String item) {
+    Map<String, String> expertiseMap = {
+      'John Doe': 'Mathematics',
+      'Papi Chulo': 'Physics',
+      'Lars Hendriks': 'Biology',
+      'Mathew Jones': 'Soccer',
+      'Marcel Bemmel': 'Tennis',
+      'Laura Bezem': 'Swimming'
+    };
+
+    Map<String, String> pictureMap = {
+      'John Doe': 'assets/profile1.jpg',
+      'Papi Chulo': 'assets/profile2.jpeg',
+      'Lars Hendriks': 'assets/profile3.jpg',
+      'Mathew Jones': 'assets/profile4.jpg',
+      'Marcel Bemmel': 'assets/profile5.jpg',
+      'Laura Bezem': 'assets/profile6.jpeg'
+    };
+
     return SizedBox(
       width: 150,
       child: Card(
@@ -233,11 +282,17 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 item,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              const Text('Expertise'),
+              Text(expertiseMap[item] ?? 'General'),
               const SizedBox(height: 8),
-              const Center(
-                child: CircleAvatar(
-                  radius: 30,
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.asset(
+                    pictureMap[item] ?? 'assets/profile1.jpg',
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],

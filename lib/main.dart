@@ -121,8 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 20),
               buildCategorySection(
-                  'School subjects', ['John Doe', 'Papi Chulo', 'Lars Hendriks', 'Rik Bilsen', 'Jaycey Brugge', 'Tijn Timmermans']),
-              buildCategorySection('Sports', ['Mathew Jones', 'Marcel Bemmel', 'Laura Bezem', 'Peter franse', 'Pieter van Post', 'Martijn Krabbel' ]),
+                  'School subjects', ['Professor Alex', 'Master Tobias', 'Lars Hendriks', 'Coach Samuel', 'Ms. Margaret', 'Liam Bennett']),
+              buildCategorySection('Sports', ['Sophia Mitchell', 'Nina Torres', 'Laura Bezemt', 'Peter Van Zuid', 'Pieter van Post', 'Martijn Krabbel' ]),
             ],
           ),
         ),
@@ -190,6 +190,18 @@ class _MyHomePageState extends State<MyHomePage> {
       'assets/profile6.jpeg',
     ];
 
+    List<String> mentorNames = [
+      'Dr. James Wilson',
+      'Sarah Thompson',
+      'Michael Chen',
+      'Emma Rodriguez',
+      'David Parker',
+      'Lisa Anderson'
+    ];
+
+    List<String> expertises = ['Math', 'Chess', 'History', 'English'];
+    String randomExpertise = expertises[index % expertises.length];
+
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
         return SizedBox(
@@ -202,12 +214,11 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Mentor Name',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    mentorNames[index % mentorNames.length],
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  const Text('Expertise'),
-                  const SizedBox(height: 8),
+                  Text(randomExpertise),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -290,6 +301,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     ];
 
+    List<String> expertises = ['Math', 'Chess', 'History', 'English'];
+    String randomExpertise = expertises[index % expertises.length];
+
     return SizedBox(
       width: 150,
       child: Card(
@@ -302,8 +316,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 item,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              const Text('Expertise'),
-              const SizedBox(height: 8),
+              Text(randomExpertise),
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
