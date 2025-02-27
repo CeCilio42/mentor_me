@@ -95,7 +95,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          height: _isExpanded ? MediaQuery.of(context).size.height * 0.75 : 80.0,
+          height: _isExpanded ? MediaQuery.of(context).size.height * 0.75 : 50.0,
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20.0),
@@ -106,7 +106,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
               child: _isExpanded
                   ? ChatScreen()
                   : Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: Center(
                         child: ElevatedButton(
                           onPressed: () {
@@ -118,7 +118,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                             backgroundColor: Colors.grey[300],
                             foregroundColor: Colors.black,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 12),
+                            horizontal: 24, vertical: 10),
                             textStyle: const TextStyle(fontSize: 16),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
